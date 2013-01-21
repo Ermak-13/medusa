@@ -68,7 +68,7 @@ namespace :release do
   task :build do
     puts "build release #{Settings::VERSION}"
 
-    %x{rm medusa-*.js}
+    %x(rm medusa-*.js)
     result_file = "medusa-#{Settings::VERSION}.js"
     compile_and_join_coffeescripts(result_file)
   end
