@@ -1,7 +1,8 @@
 configurations = {
   'browser': {
     'webpageCallback': () ->
-      browser.getWebpage().render('temp/google.png')
+      webpage = browser.getWebpage()
+      Screensaver.shoot(webpage).save('temp/googl.png')
       phantom.exit()
   },
 }

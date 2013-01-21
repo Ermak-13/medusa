@@ -1,8 +1,3 @@
-class InvalidSettings
-  @build: (message) ->
-    "Invalid Settings: #{message}"
-
-
 class Browser
   constructor: (configurations = {}) ->
     # private methods
@@ -65,3 +60,6 @@ class Browser
 
   addCookie: (configurations) =>
     @webpage.addCookie(configurations)
+
+  evaluate: (script) =>
+    @webpage.evaluate(script)
