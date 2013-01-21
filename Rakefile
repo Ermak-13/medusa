@@ -2,6 +2,8 @@ require 'rubygems'
 
 
 module Settings
+  VERSION = '0.0.0'
+
   MEDUSA_PATH = File.expand_path(File.dirname(__FILE__))
 
   SRC_DIR_NAME = 'src'
@@ -14,12 +16,18 @@ module Settings
   BIN_MESSAGE = "#{BIN_DIR_NAME}/*.js"
 
   ORDER_COFFEESCRIPT = [
+    'exceptions',
     'browser',
-    'main',
+    'screensaver',
   ]
   COFFEESCRIPTS_FILES = ORDER_COFFEESCRIPT.map do |i|
     "#{Settings::SRC_PATH}/#{i}.coffee"
   end
+end
+
+def compile_and_join_coffeescripts(result_file)
+    options = "--compile"
+     %x(coffee  --join #{result_file} #{options} #{Settings::COFFEESCRIPTS_FILES.join(' ')})
 end
 
 namespace :coffee do
@@ -41,9 +49,27 @@ namespace :coffee do
 
   desc "compile & join coffeescripts files"
   task :join do
-    result_file = ARGV.last
-    options = "--compile"
+    puts "compile & join #{Settings::SRC_MESSAGE} files to #{Settings::BIN_MESSAGE}"
 
-    %x(coffee  --join #{result_file} #{options} #{Settings::COFFEESCRIPTS_FILES.join(' ')})
+    result_file = ARGV.last
+    compile_and_join_coffeescripts(result_file)
+  end
+end
+
+namespace :release do
+  desc "show current version"
+  task :version do
+    puts "current version"
+
+    puts Settings::VERSION
+  end
+
+  desc "build new release"
+  task :build do
+    puts "build release #{Settings::VERSION}"
+
+    %x{rm medusa-*.js}
+    result_file = "medusa-#{Settings::VERSION}.js"
+    compile_and_join_coffeescripts(result_file)
   end
 end
