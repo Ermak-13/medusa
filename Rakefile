@@ -59,9 +59,7 @@ end
 namespace :release do
   desc "show current version"
   task :version do
-    puts "current version"
-
-    puts Settings::VERSION
+    puts "current version #{Settings::VERSION}"
   end
 
   desc "build new release"
