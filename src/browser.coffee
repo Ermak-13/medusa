@@ -38,9 +38,6 @@ class Browser
       if @settings['windowSize']?
         @webpage.viewportSize = @settings.windowSize
 
-      # TODO: build configurations (webpage)
-      console.log('configu...')
-
     # constructor
     initSettings()
     validSettings()
