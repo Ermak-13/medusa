@@ -1,3 +1,5 @@
+window.medusa ||= {}
+
 class Browser
   constructor: (configurations = {}) ->
     # private methods
@@ -63,3 +65,5 @@ class Browser
 
   evaluate: (script) =>
     @webpage.evaluate(script)
+
+window.medusa.Browser = Browser
