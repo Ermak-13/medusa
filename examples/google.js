@@ -15,6 +15,8 @@
 
   })();
 
+  window.medusa || (window.medusa = {});
+
   Browser = (function() {
 
     function Browser(configurations) {
@@ -110,6 +112,10 @@
 
   })();
 
+  window.medusa.Browser = Browser;
+
+  window.medusa || (window.medusa = {});
+
   Screensaver = (function() {
 
     function Screensaver(webpage, configurations) {
@@ -133,16 +139,21 @@
 
   })();
 
+  window.medusa.Screensaver = Screensaver;
+
+}).call(this);
+
+
+
   configurations = {
     'browser': {
       'webpageCallback': function() {
         var webpage = browser.getWebpage();
-        Screensaver.shoot(webpage).save('google.png');
+        medusa.Screensaver.shoot(webpage).save('google.png');
         phantom.exit();
       }
     }
   };
 
-  browser = Browser.start(configurations['browser']);
+  browser = medusa.Browser.start(configurations['browser']);
   browser.open('http://www.google.com');
-}).call(this);

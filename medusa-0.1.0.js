@@ -15,6 +15,8 @@
 
   })();
 
+  window.medusa || (window.medusa = {});
+
   Browser = (function() {
 
     function Browser(configurations) {
@@ -110,6 +112,10 @@
 
   })();
 
+  window.medusa.Browser = Browser;
+
+  window.medusa || (window.medusa = {});
+
   Screensaver = (function() {
 
     function Screensaver(webpage, configurations) {
@@ -132,5 +138,7 @@
     return Screensaver;
 
   })();
+
+  window.medusa.Screensaver = Screensaver;
 
 }).call(this);

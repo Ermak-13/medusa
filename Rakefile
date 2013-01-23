@@ -2,7 +2,7 @@ require 'rubygems'
 
 
 module Settings
-  VERSION = '0.0.0'
+  VERSION = '0.1.0'
 
   MEDUSA_PATH = File.expand_path(File.dirname(__FILE__))
 
